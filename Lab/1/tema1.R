@@ -44,9 +44,8 @@ ex3 = function() {
   fb40 = length(factura[factura > 40]);
   print(paste("d) Number of values > 40 =",fb40))
   
-  ceva = factura[factura > 40];
-  print(ceva);
-  
+  # p/ 100 * n = x => p = x * 100 / n
+  # n = factura.len; x = fb40
   p = fb40 * 100 / length(factura);
   print(paste("e) Percentage =",p));
   
