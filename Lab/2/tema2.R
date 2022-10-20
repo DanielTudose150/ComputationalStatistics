@@ -8,6 +8,83 @@ ex2 = function() {
   {
     plot(x,dbinom(x,20,p), ylab="y", type="o");
     title(main=paste0("B(x, 20, ",p,")"));
-    png(paste0("binom",p,".png"),width=600, height=600);
+    title = floor(p * 10);
+    png(paste0("binom",title,".png"),width=600, height=600);
   }
+}
+
+ex3 = function() {
+  x = -7:7;
+  sig = c(0.5, 1, 2);
+  colours = c("green3", "red", "blue");
+  
+  plot(x, dnorm(x, 0, sig[1]), ylab="y", col=colours[1], type="o");
+  lines(x, dnorm(x, 0, sig[2]), col=colours[2], type="o");
+  lines(x, dnorm(x, 0, sig[3]), col=colours[3], type="o");
+  legend(-7,0.8 , legend=sig,col=colours,lty=1,cex=0.8, title="Standard Deviation");
+}
+
+CLT = function(n) {
+  vmeans = c();
+  for(i in 1:1000){
+    v = runif(n, 0, 20);
+    m = mean(v);
+    vmeans = c(vmeans, m);
+  }
+  
+  return(vmeans);
+}
+
+ex4b = function() {
+
+  par(mfrow = c(2,2));
+  
+  interval = seq(0,20,1);
+  
+  for(i in c(1,5,10,100))
+  {
+    vmeans = CLT(i);
+    hist(vmeans,main=paste0("Histogram for n=",i," using uniform distribution"), xlab="vmeans with default breaks");
+  }
+  
+  for(i in c(1,5,10,100))
+  {
+    vmeans = CLT(i);
+    hist(vmeans,main=paste0("Histogram for n=",i," using uniform distribution"),breaks=interval, xlab="vmeans with breaks at seq(0, 20, 1)");
+  }
+  
+  # Pentru n=1, histograma numara valorile care se incadreaza intr-un break.
+  # Pentru n > 1, histograma incepe sa prinda forma distributiei normale
+  # Legat de forma distributiei normale, cu cat n e mai mare, cu atat forma o sa fie una cu deviatie standard mai mica(vizual cel putin)
+  
+  par(mfrow=c(1,1));
+}
+
+CLTc = function(n) {
+  vmeans = c();
+  for(i in 1:1000){
+    v = rbinom(n, 20, 0.1);
+    m = mean(v);
+    vmeans = c(vmeans, m);
+  }
+
+  return(vmeans);
+}
+
+ex4c = function() {
+  
+  par(mfrow = c(2,2));
+  
+  for(i in c(1,5,10,100))
+  {
+    vmeans = CLTc(i);
+    hist(vmeans,main=paste0("Histogram for n=",i," using binomial distribution"));
+  }
+  
+  # Asemanator cu distributia uniforma pentru n > 1, graficul histrogramei incepe sa prinda forma de distributie normala
+  # insa una cu deviatie standard cu valoare constanta sau una foarte aproape de o valoare(probabil 1)
+  # Valorile se pun intr-o anumita masura simetric fata de valoarea mediana
+  # Pentru n=1, graficul histogramei are o forma asemanatoare distributiei binomiale pentru probabilitati < 0.3 (give or take)
+  
+  par(mfrow=c(1,1));
 }
