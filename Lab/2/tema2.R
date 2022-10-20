@@ -6,10 +6,13 @@ ex2 = function() {
   x = 1:20;
   for(p in seq(0.1,0.9,0.1))
   {
-    plot(x,dbinom(x,20,p), ylab="y", type="o");
-    title(main=paste0("B(x, 20, ",p,")"));
-    title = floor(p * 10);
-    png(paste0("binom",title,".png"),width=600, height=600);
+    photoTitle = floor(p * 10);
+    photoTitle = paste0("binom",photoTitle,".png");
+    png(photoTitle,width=600, height=600);
+    
+    plotTitle = paste0("B(x, 20, ",p,")"); 
+    plot(x,dbinom(x,20,p), ylab="y", type="o", main=plotTitle);
+    
   }
 }
 
