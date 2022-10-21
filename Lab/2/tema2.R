@@ -17,13 +17,13 @@ ex2 = function() {
 }
 
 ex3 = function() {
-  x = -7:7;
+  x = seq(-7,7,0.1);
   sig = c(0.5, 1, 2);
   colours = c("green3", "red", "blue");
   
-  plot(x, dnorm(x, 0, sig[1]), ylab="y", col=colours[1], type="o");
-  lines(x, dnorm(x, 0, sig[2]), col=colours[2], type="o");
-  lines(x, dnorm(x, 0, sig[3]), col=colours[3], type="o");
+  plot(x, dnorm(x, 0, sig[1]), ylab="y", col=colours[1], type="l");
+  lines(x, dnorm(x, 0, sig[2]), col=colours[2], type="l");
+  lines(x, dnorm(x, 0, sig[3]), col=colours[3], type="l");
   legend(-7,0.8 , legend=sig,col=colours,lty=1,cex=0.8, title="Standard Deviation");
 }
 
@@ -58,7 +58,6 @@ ex4b = function() {
   
   # Pentru n=1, histograma numara valorile care se incadreaza intr-un break.
   # Pentru n > 1, histograma incepe sa prinda forma distributiei normale
-  # Legat de forma distributiei normale, cu cat n e mai mare, cu atat forma o sa fie una cu deviatie standard mai mica(vizual cel putin)
   
   par(mfrow=c(1,1));
 }
@@ -85,9 +84,8 @@ ex4c = function() {
   }
   
   # Asemanator cu distributia uniforma pentru n > 1, graficul histrogramei incepe sa prinda forma de distributie normala
-  # insa una cu deviatie standard cu valoare constanta sau una foarte aproape de o valoare(probabil 1)
   # Valorile se pun intr-o anumita masura simetric fata de valoarea mediana
-  # Pentru n=1, graficul histogramei are o forma asemanatoare distributiei binomiale pentru probabilitati < 0.3 (give or take)
+  # Pentru n=1, graficul histogramei are o forma asemanatoare distributiei binomiale
   
   par(mfrow=c(1,1));
 }
