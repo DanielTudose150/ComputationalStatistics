@@ -21,8 +21,6 @@ ex1 = function() {
   mat = cov(df);
   print(mat);
   
-  # deoarece coeficientul de corelatie de negativ, aproape de -1, putem spune ca exista intr-o anumita masura 
-  # o relatie inversa liniar proportionala intre cele doua variabile
 }
 
 ex2 = function() {
@@ -45,11 +43,13 @@ ex2 = function() {
   legend("topleft", "Y estimator",lty=1,col="red");
   
   print(paste0("Y = ",rsc[1]," + ", rsc[2], " * X"));
+  tmp = estimator(rsc[1],rsc[2],115);
+  print(paste0("Estimated value for IQ=", 115," = ",tmp));
+  points(115,tmp,col="blue");
   
-  print(paste0("Estimated value for IQ=", 115," = ",estimator(rsc[1],rsc[2],115)));
-  
-  print(paste0("Estimated value for IQ=", 130," = ",estimator(rsc[1],rsc[2],130)));
-  
+  tmp = estimator(rsc[1],rsc[2],130);
+  print(paste0("Estimated value for IQ=", 130," = ",tmp));
+  points(130,tmp,col="blue");
   detach(iq);
 }
 
@@ -66,6 +66,9 @@ ex3 = function(m, a, b, xmin, xmax, sigma) {
   mat = matrix(cbind(x,y),c(length(x),2));
   return(mat);
 }
+
+#ex3(10, 10, 0.8, 5, 5.2, 0.01)
+
 
 ex4 = function(m, x, y) {
   xmean = mean(x);
