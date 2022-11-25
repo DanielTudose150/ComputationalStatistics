@@ -33,11 +33,23 @@ ex = function()
     Cp[p] = result[7];
     combinationCp[p] = result[8];
   }
-  
+  Cp = matrix(Cp,ncol=length(Cp));
+  a = unlist(Cp[1,]);
+  b = seq(2,14);
+  c = abs(a-b);
+  Cp = matrix(c,ncol=length(c));
   plot(1:13, RSS,xlab = "p");
   plot(1:13, R2,xlab = "p");
   plot(1:13, R2a,xlab = "p");
   plot(1:13, Cp,xlab = "p");
+  
+  n
+  plot(1:13, RSS,xlab = "p");
+  plot(1:13, R2,xlab = "p");
+  plot(1:13, R2a,xlab = "p");
+  plot(1:13, Cp,xlab = "p");
+  
+  par(mfrow=c(1,1));
   
   print("RSS");
   print(matrix(RSS,ncol=length(RSS)));
@@ -107,7 +119,7 @@ solveForP = function(p, house, houseNames, s2,m)
       combinationR2a = aux;
     }
     
-    if(abs(p-currCp) < abs(p-Cp))
+    if(abs((p+1)-currCp) < abs((p+1)-Cp))
     {
       Cp = currCp;
       combinationCp = aux;
